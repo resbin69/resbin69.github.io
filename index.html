@@ -5,6 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resbin Sabah | Portfolio</title>
     <style>
+        /* Background setup */
+#star-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Keeps stars behind your text */
+    background: radial-gradient(circle at bottom, #111 0%, #050505 100%);
+    overflow: hidden;
+}
+
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: twinkle var(--duration) infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
         
         body {
             background-color: #0f0f0f;
@@ -144,6 +168,29 @@
     <footer>
         © 2024 - 2026 • RESBIN SABAH • All rights reserved
     </footer>
+    <div id="star-container"></div>
+
+<script>
+    const container = document.getElementById('star-container');
+    const starCount = 150;
+
+    for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        
+        // Random position and size
+        const size = Math.random() * 3 + 'px';
+        star.style.width = size;
+        star.style.height = size;
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        
+        // Random twinkle speed
+        star.style.setProperty('--duration', Math.random() * 3 + 2 + 's');
+        
+        container.appendChild(star);
+    }
+</script>
 
 </body>
 </html>
